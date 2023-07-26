@@ -345,6 +345,10 @@ impl WindowBuilder for MockWindowBuilder {
     self
   }
 
+  fn window_classname<S: Into<String>>(self, classname: S) -> Self {
+    self
+  }
+
   #[cfg(windows)]
   fn parent_window(self, parent: HWND) -> Self {
     self

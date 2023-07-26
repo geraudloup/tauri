@@ -238,6 +238,14 @@ pub trait WindowBuilder: WindowBuilderBase {
   #[must_use]
   fn skip_taskbar(self, skip: bool) -> Self;
 
+  /// Sets custom name for Windows' window class.
+  ///
+  /// ## Platform-specific
+  ///
+  /// - **Linux / iOS / Android:** Unsupported.
+  #[must_use]
+  fn window_classname<S: Into<String>>(self, window_classname: S) -> Self;
+
   /// Sets a parent to the window to be created.
   ///
   /// A child window has the WS_CHILD style and is confined to the client area of its parent window.

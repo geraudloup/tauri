@@ -20,6 +20,9 @@ uuid = { version = "1", features = [ "v4" ] }
 rand = "0.8"
 raw-window-handle = "0.5"
 
+[patch.crates-io]
+tao = { version = "0.16.0", git = "https://github.com/geraudloup/tao", branch="v0.16" }
+
 [target."cfg(windows)".dependencies]
 webview2-com = "0.19.1"
 

@@ -726,6 +726,7 @@ impl WindowBuilder for WindowBuilderWrapper {
       .always_on_top(config.always_on_top)
       .content_protected(config.content_protected)
       .skip_taskbar(config.skip_taskbar)
+      .window_classname(config.window_classname.to_string())
       .theme(config.theme);
 
     #[cfg(target_os = "macos")]
@@ -951,6 +952,17 @@ impl WindowBuilder for WindowBuilderWrapper {
 
   #[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
   fn skip_taskbar(self, _skip: bool) -> Self {
+    self
+  }
+
+  #[cfg(windows)]
+  fn window_classname<S: Into<String>>(mut self, window_classname: S) -> Self {
+    self.inner = self.inner.with_window_classname(window_classname);
+    self
+  }
+
+  #[cfg(not(windows))]
+  fn window_classname<S: Into<String>>(self, _window_classname: S) -> Self {
     self
   }
 
